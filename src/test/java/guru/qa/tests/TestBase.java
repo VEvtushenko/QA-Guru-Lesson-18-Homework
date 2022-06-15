@@ -17,6 +17,9 @@ public class TestBase  {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = Project.config.baseTestedURL();
         RestAssured.baseURI = Project.config.baseTestedURI();
+        if (!Project.config.remoteHub().equals("")) {
+            Configuration.remote = Project.config.remoteHub();
+        }
     }
 
     @BeforeEach
