@@ -18,7 +18,6 @@ public class LoginTest extends TestBase {
         open("/favicon.ico");
         getAuth(getAuthCookie(authCookieName));
         open("/");
-
         $(".header-links-wrapper").shouldHave(text("Log out"));
     }
 }
