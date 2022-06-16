@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import guru.qa.attachments.AllureAttachments;
 import guru.qa.config.Project;
+import guru.qa.helpers.DriverSettings;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
@@ -14,12 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class TestBase  {
     @BeforeAll
     static void setupAPITest() {
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = Project.config.baseTestedURL();
-        RestAssured.baseURI = Project.config.baseTestedURI();
-        if (!Project.config.remoteHub().equals("")) {
-            Configuration.remote = Project.config.remoteHub();
-        }
+        DriverSettings.driverConfig();
     }
 
     @BeforeEach
@@ -32,6 +28,9 @@ public class TestBase  {
         AllureAttachments.addPageSource();
         AllureAttachments.addScreenshotAs("Final screenshot");
         AllureAttachments.addBrowserLogs();
+        if (!Project.config.videoURL().equals("")) {
+            AllureAttachments.addVideo();
+        }
         Selenide.closeWebDriver();
     }
 }

@@ -11,6 +11,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static guru.qa.helpers.DriverUtils.getSessionId;
+import static guru.qa.helpers.DriverUtils.getVideoUrl;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class AllureAttachments {
@@ -37,18 +39,4 @@ public class AllureAttachments {
                 + "' type='video/mp4'></video></body></html>";
     }
 
-    public static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
-
-        try {
-            return new URL(videoUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static String getSessionId(){
-        return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
-    }
 }

@@ -9,4 +9,5 @@ public interface TestConfiguration extends Config {
     String remoteHub();
     String baseTestedURI();
     String baseTestedURL();
+    String videoURL();
 }
