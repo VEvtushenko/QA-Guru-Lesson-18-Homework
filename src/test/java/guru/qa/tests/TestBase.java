@@ -7,14 +7,16 @@ import guru.qa.attachments.AllureAttachments;
 import guru.qa.config.Project;
 import guru.qa.helpers.DriverSettings;
 import io.qameta.allure.selenide.AllureSelenide;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
 
 public class TestBase  {
     @BeforeAll
     static void setupAPITest() {
+        Configuration.holdBrowserOpen = true;
         DriverSettings.driverConfig();
     }
 
@@ -23,8 +25,8 @@ public class TestBase  {
         SelenideLogger.addListener("AllureListener", new AllureSelenide());
     }
 
-    @AfterAll
-    static void addAttachments() {
+    @AfterEach
+    void addAttachments() {
         AllureAttachments.addPageSource();
         AllureAttachments.addScreenshotAs("Final screenshot");
         AllureAttachments.addBrowserLogs();
