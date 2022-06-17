@@ -1,6 +1,5 @@
 package guru.qa.tests;
 
-import guru.qa.helpers.apiRequests.Product;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
@@ -9,11 +8,13 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.data.TestData.authCookieName;
-import static guru.qa.helpers.apiRequests.GetAuth.getAuth;
-import static guru.qa.helpers.apiRequests.GetAuth.getAuthCookie;
+import static guru.qa.helpers.DriverUtils.getAuth;
+import static guru.qa.helpers.ApiRequests.addToCart;
+import static guru.qa.helpers.ApiRequests.getAuthCookie;
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginTest extends TestBase {
+public class demoWebShopTests extends TestBase {
 
     @Test
     @Owner("Vladimir Evtushenko")
@@ -23,14 +24,8 @@ public class LoginTest extends TestBase {
     @Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
     @DisplayName("Login UI test with API auth")
     void loginTest() {
-        step("Open site for authorization by cookie", () -> {
-            open("/favicon.ico");
-        });
-        step("Get auth cookie and send to site", () -> {
-            getAuth(getAuthCookie(authCookieName));
-            open("/");
-        });
-        step("Check auth", () -> {
+        getAuth(getAuthCookie(authCookieName));
+        step("UI check auth", () -> {
             $(".header-links-wrapper").shouldHave(text("Log out"));
         });
     }
@@ -43,13 +38,9 @@ public class LoginTest extends TestBase {
     @Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
     @DisplayName("Add product to cart UI test with API adding")
     void addProductToCartTest() {
-        step("Open site for authorization by cookie", () -> {
-            open("/favicon.ico");
+        getAuth(getAuthCookie(authCookieName));
+        step("Check confirm success adding product to cart in response", () -> {
+            assertTrue(addToCart().contains("The product has been added"));
         });
-        step("Get auth cookie and send to site", () -> {
-            getAuth(getAuthCookie(authCookieName));
-            open("/");
-        });
-        Product.addToCart();
     }
 }

@@ -23,7 +23,9 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
-            "org.aeonbits.owner:owner:$ownerVersion"
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.hamcrest:hamcrest-all:1.3",
+            'org.assertj:assertj-core:3.23.1'
     )
 
     testRuntimeOnly (
