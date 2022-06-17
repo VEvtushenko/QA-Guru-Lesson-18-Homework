@@ -23,5 +23,17 @@ public class TestData {
                                                     "&product_attribute_74_3_28=" + hddType[0] +
                                                     "&product_attribute_74_8_29=" + officeSuite +
                                                     "&addtocart_74" +
-                                                    ".EnteredQuantity=2";
+                                                    ".EnteredQuantity=2",
+                                addAddressRequest = "Address.Id=0" +
+                                        "&Address.FirstName=Snark" +
+                                        "&Address.LastName=Boojum" +
+                                        "&Address.Email=Snark%40boojum.wu" +
+                                        "&Address.CountryId=3" +
+                                        "&Address.StateProvinceId=0" +
+                                        "&Address.City=Some+city" +
+                                        "&Address.Address1=Some+street" +
+                                        "&Address.ZipPostalCode=101" +
+                                        "&Address.PhoneNumber=111213";
+
+
 }

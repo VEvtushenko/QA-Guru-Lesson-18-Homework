@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class ApiRequests {
-    @Step("Get auth cookie")
+
     public static Cookie getAuthCookie(String authCookieName) {
         String authCookieValue = given()
                 .filter(withCustomTemplates())
@@ -44,5 +44,17 @@ public class ApiRequests {
                 .body("success", is(true))
                 .body("updatetopcartsectionhtml", notNullValue())
                 .extract().body().jsonPath().getString("message");
+    }
+
+    public static void addUserAddress(Cookie authCookie) {
+        given()
+                .filter(withCustomTemplates())
+                .when()
+                .cookie(String.valueOf(authCookie))
+                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+                .body(addAddressRequest)
+                .post("/customer/addressadd")
+                .then()
+                .statusCode(302);
     }
 }

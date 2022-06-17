@@ -9,9 +9,8 @@ import org.openqa.selenium.Cookie;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.data.TestData.authCookieName;
-import static guru.qa.helpers.api.ApiRequests.getAuthCookie;
+import static guru.qa.helpers.api.ApiRequests.*;
 import static guru.qa.helpers.webDriver.DriverUtils.getAuth;
-import static guru.qa.helpers.api.ApiRequests.addToCart;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,5 +46,20 @@ public class DemoWebShopTests extends TestBase {
         });
     }
 
+    @Test
+    @DisplayName("Adding new user address test")
+    void addAddressTest() {
 
+        step("Get auth on site", () -> {
+            getAuth(getAuthCookie(authCookieName));
+        });
+        step("Add address", () -> {
+            addUserAddress(getAuthCookie(authCookieName));
+        });
+        step("Open user address page and check new address", () -> {
+            open("/customer/addresses");
+            $(".center-2").shouldHave(text("Snark Boojum"));
+        });
+        addAttachments();
+    }
 }
