@@ -9,7 +9,6 @@ public class DriverSettings {
     public static void driverConfig() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = Project.config.baseTestedURL();
         RestAssured.baseURI = Project.config.baseTestedURI();
         if (!Project.config.remoteHub().equals("")) {

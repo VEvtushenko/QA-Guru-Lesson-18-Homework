@@ -3,10 +3,8 @@ package guru.qa.helpers;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
-import static com.codeborne.selenide.Selenide.open;
 import static guru.qa.data.TestData.*;
 import static guru.qa.helpers.ApiListener.withCustomTemplates;
-import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
 public class ApiRequests {
@@ -30,17 +28,17 @@ public class ApiRequests {
     }
 
     @Step("Add product to cart")
-    public static String addToCart(String authCookieValue) {
+    public static String addToCart(Cookie authCookie) {
         return given()
                 .filter(withCustomTemplates())
                 .when()
-                .cookie(authCookieValue)
+                .cookie(String.valueOf(authCookie))
                 .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .body(addComputerRequest)
                 .post("/addproducttocart/details/74/1")
                 .then()
                 .log().all()
                 .statusCode(200)
-                .extract().body().toString();
+                .extract().body().jsonPath().getString("message");
     }
 }

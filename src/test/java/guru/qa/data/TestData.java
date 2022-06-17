@@ -11,6 +11,7 @@ public class TestData {
                                                 "&RememberMe=false",
                                 authCookieName = "NOPCOMMERCE.AUTH";
 
+
     public static final String softwhereAtribute = "";
 
     public static final String[] processorType = new String[] {"80", "81", "82"};
@@ -21,9 +22,9 @@ public class TestData {
                                 otherOfficeSuite = "90";
 
     public static final String addComputerRequest = "product_attribute_74_5_26=" + processorType[0] +
-                                             "&product_attribute_74_6_27=" + ramType[1] +
-                                             "&product_attribute_74_3_28=" + hddType[0] +
-                                             "&product_attribute_74_8_29=%s" + officeSuite +
-                                             "&addtocart_74" +
-                                             ".EnteredQuantity=2";
+                                                    "&product_attribute_74_6_27=" + ramType[1] +
+                                                    "&product_attribute_74_3_28=" + hddType[0] +
+                                                    "&product_attribute_74_8_29=" + officeSuite +
+                                                    "&addtocart_74" +
+                                                    ".EnteredQuantity=2";
 }

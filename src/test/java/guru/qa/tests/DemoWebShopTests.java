@@ -1,6 +1,5 @@
 package guru.qa.tests;
 
-import guru.qa.helpers.ApiRequests;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
@@ -9,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.data.TestData.authCookieName;
+import static guru.qa.helpers.ApiRequests.getAuthCookie;
 import static guru.qa.helpers.DriverUtils.getAuth;
 import static guru.qa.helpers.ApiRequests.addToCart;
-import static guru.qa.helpers.ApiRequests.getAuthCookie;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class demoWebShopTests extends TestBase {
+public class DemoWebShopTests extends TestBase {
 
     @Test
     @Owner("Vladimir Evtushenko")
@@ -41,7 +40,7 @@ public class demoWebShopTests extends TestBase {
     void addProductToCartTest() {
         getAuth(getAuthCookie(authCookieName));
         step("Check confirm success adding product to cart in response", () -> {
-            assertTrue(addToCart(ApiRequests.getAuthCookie(authCookieName).getValue()).contains("The product has been added"));
+            assertTrue(addToCart(getAuthCookie(authCookieName)).contains("The product has been added"));
         });
     }
 }
