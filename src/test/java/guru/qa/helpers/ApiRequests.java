@@ -30,11 +30,11 @@ public class ApiRequests {
     }
 
     @Step("Add product to cart")
-    public static String addToCart() {
+    public static String addToCart(String authCookieValue) {
         return given()
                 .filter(withCustomTemplates())
                 .when()
-                .cookie(ApiRequests.getAuthCookie(authCookieName).getValue())
+                .cookie(authCookieValue)
                 .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .body(addComputerRequest)
                 .post("/addproducttocart/details/74/1")

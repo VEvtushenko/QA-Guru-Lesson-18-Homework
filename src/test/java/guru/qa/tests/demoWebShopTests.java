@@ -1,5 +1,6 @@
 package guru.qa.tests;
 
+import guru.qa.helpers.ApiRequests;
 import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
@@ -40,7 +41,7 @@ public class demoWebShopTests extends TestBase {
     void addProductToCartTest() {
         getAuth(getAuthCookie(authCookieName));
         step("Check confirm success adding product to cart in response", () -> {
-            assertTrue(addToCart().contains("The product has been added"));
+            assertTrue(addToCart(ApiRequests.getAuthCookie(authCookieName).getValue()).contains("The product has been added"));
         });
     }
 }
