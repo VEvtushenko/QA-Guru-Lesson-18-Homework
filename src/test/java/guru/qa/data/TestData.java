@@ -11,9 +11,6 @@ public class TestData {
                                                 "&RememberMe=false",
                                 authCookieName = "NOPCOMMERCE.AUTH";
 
-
-    public static final String softwhereAtribute = "";
-
     public static final String[] processorType = new String[] {"80", "81", "82"};
     public static final String[] ramType = new String[] {"83", "84", "85"};
     public static final String[] hddType = new String[] {"86", "87"};

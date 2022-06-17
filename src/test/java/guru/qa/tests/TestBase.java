@@ -1,12 +1,10 @@
 package guru.qa.tests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import guru.qa.attachments.AllureAttachments;
 import guru.qa.config.Project;
-import guru.qa.helpers.ApiRequests;
-import guru.qa.helpers.DriverSettings;
+import guru.qa.helpers.webDriver.DriverSettings;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import org.junit.jupiter.api.AfterEach;

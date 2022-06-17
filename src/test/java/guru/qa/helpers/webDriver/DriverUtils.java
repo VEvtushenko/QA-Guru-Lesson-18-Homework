@@ -1,4 +1,4 @@
-package guru.qa.helpers;
+package guru.qa.helpers.webDriver;
 
 import com.codeborne.selenide.WebDriverRunner;
 import guru.qa.config.Project;

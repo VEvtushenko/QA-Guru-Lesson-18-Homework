@@ -4,13 +4,14 @@ import io.qameta.allure.*;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static guru.qa.data.TestData.authCookieName;
-import static guru.qa.helpers.ApiRequests.getAuthCookie;
-import static guru.qa.helpers.DriverUtils.getAuth;
-import static guru.qa.helpers.ApiRequests.addToCart;
+import static guru.qa.helpers.api.ApiRequests.getAuthCookie;
+import static guru.qa.helpers.webDriver.DriverUtils.getAuth;
+import static guru.qa.helpers.api.ApiRequests.addToCart;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -36,11 +37,14 @@ public class DemoWebShopTests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Feature("DemoQA")
     @Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
-    @DisplayName("Add product to cart UI test with API adding")
+    @DisplayName("API test adding product to cart")
     void addProductToCartTest() {
-        getAuth(getAuthCookie(authCookieName));
-        step("Check confirm success adding product to cart in response", () -> {
-            assertTrue(addToCart(getAuthCookie(authCookieName)).contains("The product has been added"));
+        Cookie authCookie = getAuthCookie(authCookieName);
+        String responseMessage = addToCart(authCookie);
+        step("Check confirm message", () -> {
+            assertTrue(responseMessage.contains("The product has been added"));
         });
     }
+
+
 }

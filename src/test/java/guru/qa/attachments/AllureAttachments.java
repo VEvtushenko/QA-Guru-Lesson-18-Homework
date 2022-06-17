@@ -8,8 +8,8 @@ import org.openqa.selenium.TakesScreenshot;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static guru.qa.helpers.DriverUtils.getSessionId;
-import static guru.qa.helpers.DriverUtils.getVideoUrl;
+import static guru.qa.helpers.webDriver.DriverUtils.getSessionId;
+import static guru.qa.helpers.webDriver.DriverUtils.getVideoUrl;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class AllureAttachments {

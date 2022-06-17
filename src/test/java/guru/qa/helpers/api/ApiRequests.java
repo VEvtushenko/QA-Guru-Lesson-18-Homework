@@ -1,11 +1,13 @@
-package guru.qa.helpers;
+package guru.qa.helpers.api;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
 import static guru.qa.data.TestData.*;
-import static guru.qa.helpers.ApiListener.withCustomTemplates;
+import static guru.qa.helpers.api.ApiListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class ApiRequests {
     @Step("Get auth cookie")
@@ -39,6 +41,8 @@ public class ApiRequests {
                 .then()
                 .log().all()
                 .statusCode(200)
+                .body("success", is(true))
+                .body("updatetopcartsectionhtml", notNullValue())
                 .extract().body().jsonPath().getString("message");
     }
 }
