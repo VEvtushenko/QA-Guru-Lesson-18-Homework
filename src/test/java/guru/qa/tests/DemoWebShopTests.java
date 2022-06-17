@@ -29,6 +29,7 @@ public class DemoWebShopTests extends TestBase {
         step("UI check auth", () -> {
             $(".header-links-wrapper").shouldHave(text("Log out"));
         });
+        addAttachments();
     }
 
     @Test

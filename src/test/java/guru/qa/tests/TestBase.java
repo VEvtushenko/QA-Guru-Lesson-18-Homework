@@ -24,7 +24,7 @@ public class TestBase  {
         SelenideLogger.addListener("AllureListener", new AllureSelenide());
     }
 
-    @AfterEach
+
     void addAttachments() {
         AllureAttachments.addPageSource();
         AllureAttachments.addScreenshotAs("Final screenshot");
