@@ -5,7 +5,9 @@ import org.openqa.selenium.Cookie;
 
 import static guru.qa.data.TestData.*;
 import static guru.qa.helpers.api.ApiListener.withCustomTemplates;
-import static io.restassured.RestAssured.given;
+import static guru.qa.helpers.api.Specs.requestSpec;
+import static guru.qa.helpers.api.Specs.responseSpec;
+import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -13,18 +15,16 @@ public class ApiRequests {
 
     public static Cookie getAuthCookie(String authCookieName) {
         String authCookieValue = given()
-                .filter(withCustomTemplates())
-                .log().all()
+                .spec(requestSpec)
                 .when()
-                .contentType("application/x-www-form-urlencoded")
+//                .contentType("application/x-www-form-urlencoded")
                 .formParam("Email", login)
                 .formParam("Password", password)
                 .formParam("RememberMe", "true")
 //                .body(loginRequest)
                 .post("/login")
                 .then()
-                .log().all()
-                .statusCode(302)
+                .spec(responseSpec)
                 .extract().cookie(authCookieName);
         return new Cookie(authCookieName, authCookieValue);
     }
@@ -48,13 +48,13 @@ public class ApiRequests {
 
     public static void addUserAddress(Cookie authCookie) {
         given()
-                .filter(withCustomTemplates())
+                .spec(requestSpec)
                 .when()
                 .cookie(String.valueOf(authCookie))
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+//                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .body(addAddressRequest)
                 .post("/customer/addressadd")
                 .then()
-                .statusCode(302);
+                .spec(responseSpec);
     }
 }

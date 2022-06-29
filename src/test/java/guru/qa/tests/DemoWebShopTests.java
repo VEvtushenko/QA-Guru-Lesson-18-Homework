@@ -14,14 +14,14 @@ import static guru.qa.helpers.webDriver.DriverUtils.getAuth;
 import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Owner("Vladimir Evtushenko")
+@Feature("DemoQA")
+@Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
 public class DemoWebShopTests extends TestBase {
 
     @Test
-    @Owner("Vladimir Evtushenko")
     @Description("Login UI test with API auth")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("DemoQA")
-    @Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
     @DisplayName("Login UI test with API auth")
     void loginTest() {
         getAuth(getAuthCookie(authCookieName));
@@ -32,11 +32,8 @@ public class DemoWebShopTests extends TestBase {
     }
 
     @Test
-    @Owner("Vladimir Evtushenko")
     @Description("Login UI test with API auth")
     @Severity(SeverityLevel.NORMAL)
-    @Feature("DemoQA")
-    @Link(value = "QA Guru, Lesson 18, Homework", url = "https://github.com/VEvtushenko/QA-Guru-Lesson-18-Homework")
     @DisplayName("API test adding product to cart")
     void addProductToCartTest() {
         Cookie authCookie = getAuthCookie(authCookieName);
